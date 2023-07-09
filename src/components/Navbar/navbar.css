@@ -1,0 +1,10 @@
+.navbar-container{
+    display: flex;
+    align-items: start;
+    justify-content: space-around;
+    padding: 1rem 0;
+    background-color: azure;
+}
+.navbar-container h3{
+    margin:0;
+}

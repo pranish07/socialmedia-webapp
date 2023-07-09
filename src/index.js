@@ -1,15 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import {App} from "./App";
+import { App } from "./App";
 import { makeServer } from "./server";
+import { DataProvider } from "./contexts/DataContext";
+import { BrowserRouter } from "react-router-dom";
 
 // Call make Server
 makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+    <DataProvider>
+      <App />
+    </DataProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
