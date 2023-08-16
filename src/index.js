@@ -1,21 +1,36 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import { App } from "./App";
-import { makeServer } from "./server";
-import { DataProvider } from "./contexts/DataContext";
+import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import "./index.css";
+import { makeServer } from "./server";
+
+import App from "./App";
+import { AuthProvider } from "./context/auth-context";
+import { PostProvider } from "./context/post-context";
+import { UserProvider } from "./context/user-context";
+import { BookmarkProvider } from "./context/bookmark-context";
+import { CommentProvider } from "./context/comment-context";
+// import ScrollToTop from "./components/ScrollToTop";
 
 // Call make Server
 makeServer();
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <DataProvider>
-      <App />
-    </DataProvider>
+      {/* <ScrollToTop /> */}
+        <AuthProvider>
+          <PostProvider>
+            <UserProvider>
+              <BookmarkProvider>
+                <CommentProvider>
+                  <App />
+                </CommentProvider>
+              </BookmarkProvider>
+            </UserProvider>
+          </PostProvider>
+        </AuthProvider>
     </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
